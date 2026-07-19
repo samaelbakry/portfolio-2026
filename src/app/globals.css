@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode: <html class="dark"> toggles the palette. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f7f7f8;
+  --color-surface: #ffffff;
+  --color-border: #e7e7ea;
+  --color-text: #0a0a0a;
+  --color-text-muted: #57585f;
+  --color-accent: #0ea5b8;
+  --color-accent-dark: #0c8a9c;
+  --color-accent-soft: #e0f7fa;
+}
+
+.dark {
+  --color-bg: #0a0a0b;
+  --color-bg-subtle: #131316;
+  --color-surface: #17181b;
+  --color-border: #27282c;
+  --color-text: #f5f5f6;
+  --color-text-muted: #a2a3ab;
+  --color-accent: #22d3ee;
+  --color-accent-dark: #67e8f9;
+  --color-accent-soft: rgba(34, 211, 238, 0.12);
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-bg-subtle: var(--color-bg-subtle);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-accent: var(--color-accent);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-accent-soft: var(--color-accent-soft);
+
+  --font-display: var(--font-manrope);
+  --font-body: var(--font-inter);
+
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus ring, in the accent color, on every focusable element. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #0a0a0a;
+}
+
+/* Subtle scrollbar so it stays out of the way of the premium aesthetic. */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
