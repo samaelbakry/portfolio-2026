@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Manrope } from "next/font/google";
 import { ThemeProvider, themeInitScript } from "@/components/ui/ThemeProvider";
 import { personal } from "@/data/cv";
@@ -55,7 +56,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Runs before hydration to prevent a flash of the wrong theme */}
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        /> */}
       </head>
       <body className={`${inter.variable} ${manrope.variable} antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>

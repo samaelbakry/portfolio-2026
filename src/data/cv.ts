@@ -21,7 +21,7 @@ export const personal: PersonalInfo = {
   linkedinUrl: "https://linkedin.com/in/sama-ibrahim-elbakry-b76b05371",
   location: "Egypt",
   locationIsPlaceholder: true,
-  resumeFileName: "Frontend_developer_Samaa_elbakry.pdf",
+  resumeFileName: "Frontend_developer_Samaa Elbakry.pdf",
   portfolioUrl: "samaaelbakry.dev", 
 };
 
@@ -95,7 +95,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Databases",
     description: "Backend database platforms",
     items: [
-      { name: "Supabase & Appwrite", level: 60, placeholder: true },
+      { name: "Supabase & Appwrite", level: 60,},
     ],
   },
   {

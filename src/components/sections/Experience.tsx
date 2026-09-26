@@ -9,8 +9,16 @@ import { staggerContainer, viewportOnce } from "@/lib/motion";
 
 export function Experience() {
   return (
-    <section id="experience" className="bg-bg-subtle py-24 sm:py-32">
-      <Container>
+    <section
+      id="experience"
+      className="relative overflow-hidden py-24 sm:py-32"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-32 -z-10 h-80 w-80 rounded-full bg-accent/5 blur-3xl"
+      />
+
+      <Container className="relative">
         <SectionHeading
           eyebrow="Experience"
           title="Education, training & certifications"
@@ -22,10 +30,14 @@ export function Experience() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="mt-12 max-w-2xl"
+          className="mt-14 max-w-3xl"
         >
           {timeline.map((entry, i) => (
-            <TimelineItem key={entry.id} entry={entry} isLast={i === timeline.length - 1} />
+            <TimelineItem
+              key={entry.id}
+              entry={entry}
+              isLast={i === timeline.length - 1}
+            />
           ))}
         </motion.div>
       </Container>

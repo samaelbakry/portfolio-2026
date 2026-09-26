@@ -9,8 +9,9 @@ import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div id="top" className="min-h-screen overflow-x-clip">
       <Navbar />
+
       <main>
         <Hero />
         <About />
@@ -19,7 +20,8 @@ export default function Home() {
         <Experience />
         <Contact />
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 }
