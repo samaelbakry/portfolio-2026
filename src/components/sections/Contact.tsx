@@ -75,13 +75,13 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden py-24 sm:py-32"
+      className="relative overflow-hidden py-16 sm:py-24 lg:py-32"
     >
-     
       <div
         aria-hidden
         className="pointer-events-none absolute -left-40 top-20 -z-10 h-72 w-72 rounded-full bg-accent/[0.035] blur-3xl"
       />
+
       <div
         aria-hidden
         className="pointer-events-none absolute -right-40 bottom-20 -z-10 h-72 w-72 rounded-full bg-accent/[0.035] blur-3xl"
@@ -94,32 +94,39 @@ export function Contact() {
           description="Open to frontend roles and freelance work — reach out however's easiest."
         />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <FadeIn className="flex flex-col">
             <div>
-              <p className="max-w-md text-sm leading-7 text-text-muted sm:text-base">
+              <p className="max-w-md text-sm leading-6 text-text-muted sm:text-base sm:leading-7">
                 Have a project in mind, a role you'd like to discuss, or just
                 want to say hello? My inbox is always open.
               </p>
             </div>
 
-            <div className="mt-8 space-y-3">
+            <div className="mt-6 space-y-3 sm:mt-8">
               {contactLinks.map(({ icon: Icon, label, href }) => (
                 <div
                   key={label}
-                  className="group flex items-center justify-between gap-4 rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-[0_12px_30px_-20px_rgba(0,0,0,0.2)]"
+                  className="
+                    group flex min-w-0 items-center gap-2
+                    rounded-2xl border border-border bg-surface p-3
+                    transition-all duration-300
+                    hover:-translate-y-0.5 hover:border-accent/30
+                    hover:shadow-[0_12px_30px_-20px_rgba(0,0,0,0.2)]
+                    sm:gap-3 sm:p-4
+                  "
                 >
                   <Link
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer noopener"
-                    className="flex min-w-0 items-center gap-3"
+                    className="flex min-w-0 flex-1 items-center gap-3"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-105">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10">
                       <Icon className="h-4 w-4" />
                     </span>
 
-                    <span className="min-w-0">
+                    <span className="min-w-0 flex-1">
                       <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-text-muted">
                         {Icon === Mail
                           ? "Email"
@@ -128,31 +135,33 @@ export function Contact() {
                             : "GitHub"}
                       </span>
 
-                      <span className="mt-0.5 block truncate text-sm font-medium text-text transition-colors group-hover:text-accent">
+                      <span className="mt-0.5 block truncate text-xs font-medium text-text transition-colors group-hover:text-accent sm:text-sm">
                         {label}
                       </span>
                     </span>
                   </Link>
 
-                  <ArrowUpRight className="h-4 w-4 shrink-0 text-text-muted opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent group-hover:opacity-100" />
+                  <ArrowUpRight className="hidden h-4 w-4 shrink-0 text-text-muted opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent group-hover:opacity-100 sm:block" />
 
                   {Icon === Mail && (
-                    <CopyButton value={personal.email} />
+                    <div className="shrink-0">
+                      <CopyButton value={personal.email} />
+                    </div>
                   )}
                 </div>
               ))}
 
-              <div className="flex items-center gap-3 rounded-2xl border border-border bg-surface p-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+              <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-border bg-surface p-3 sm:p-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent sm:h-10 sm:w-10">
                   <MapPin className="h-4 w-4" />
                 </span>
 
-                <div>
+                <div className="min-w-0">
                   <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-text-muted">
                     Based in
                   </p>
 
-                  <p className="mt-0.5 text-sm font-medium text-text">
+                  <p className="mt-0.5 truncate text-xs font-medium text-text sm:text-sm">
                     {personal.location}
                     {personal.locationIsPlaceholder}
                   </p>
@@ -160,9 +169,9 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="mt-auto hidden pt-10 lg:block">
+            <div className="mt-6 pt-2 sm:mt-auto sm:pt-10">
               <div className="flex items-center gap-2 text-xs text-text-muted">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                 Usually responds within 24–48 hours.
               </div>
             </div>
@@ -186,7 +195,13 @@ export function Contact() {
               duration: 0.7,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="relative overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-8"
+            className="
+              relative overflow-hidden rounded-3xl
+              border border-border bg-surface
+              p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]
+              sm:p-7
+              lg:p-8
+            "
           >
             <div
               aria-hidden
@@ -194,17 +209,18 @@ export function Contact() {
             />
 
             <div className="relative">
-              <div className="mb-7">
+              <div className="mb-6 sm:mb-7">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
                   Start a conversation
                 </p>
 
-                <h3 className="mt-2 text-2xl font-semibold tracking-tight text-text">
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-text sm:text-2xl">
                   Tell me about your idea.
                 </h3>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
+                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -218,7 +234,13 @@ export function Contact() {
                     name="name"
                     required
                     autoComplete="name"
-                    className="w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-text outline-none transition-all duration-200 placeholder:text-text-muted/60 focus:border-accent focus:ring-4 focus:ring-accent/10"
+                    className="
+                      w-full rounded-xl border border-border bg-bg
+                      px-4 py-3 text-sm text-text outline-none
+                      transition-all duration-200
+                      placeholder:text-text-muted/60
+                      focus:border-accent focus:ring-4 focus:ring-accent/10
+                    "
                     placeholder="Your name"
                   />
                 </div>
@@ -237,7 +259,13 @@ export function Contact() {
                     type="email"
                     required
                     autoComplete="email"
-                    className="w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-text outline-none transition-all duration-200 placeholder:text-text-muted/60 focus:border-accent focus:ring-4 focus:ring-accent/10"
+                    className="
+                      w-full rounded-xl border border-border bg-bg
+                      px-4 py-3 text-sm text-text outline-none
+                      transition-all duration-200
+                      placeholder:text-text-muted/60
+                      focus:border-accent focus:ring-4 focus:ring-accent/10
+                    "
                     placeholder="you@example.com"
                   />
                 </div>
@@ -255,7 +283,14 @@ export function Contact() {
                     name="message"
                     required
                     rows={5}
-                    className="w-full resize-none rounded-xl border border-border bg-bg px-4 py-3 text-sm leading-6 text-text outline-none transition-all duration-200 placeholder:text-text-muted/60 focus:border-accent focus:ring-4 focus:ring-accent/10"
+                    className="
+                      w-full resize-none rounded-xl border border-border
+                      bg-bg px-4 py-3 text-sm leading-6 text-text
+                      outline-none transition-all duration-200
+                      placeholder:text-text-muted/60
+                      focus:border-accent focus:ring-4 focus:ring-accent/10
+                      sm:rows-6
+                    "
                     placeholder="Tell me a bit about the role or project…"
                   />
                 </div>

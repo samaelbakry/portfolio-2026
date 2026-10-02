@@ -12,7 +12,11 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SkillBar } from "@/components/ui/SkillBar";
 import { skillCategories } from "@/data/cv";
-import { staggerContainer, fadeUp, viewportOnce } from "@/lib/motion";
+import {
+  staggerContainer,
+  fadeUp,
+  viewportOnce,
+} from "@/lib/motion";
 
 const categoryIcons = [Braces, Layers3, Smartphone];
 
@@ -20,11 +24,21 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden py-24 sm:py-32"
+      className="relative overflow-hidden py-16 sm:py-24 lg:py-32"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-40 top-32 -z-10 h-80 w-80 rounded-full bg-accent/5 blur-3xl"
+        className="
+          pointer-events-none absolute
+          -right-40 top-24
+          -z-10
+          h-64 w-64
+          rounded-full
+          bg-accent/5
+          blur-3xl
+          sm:top-32
+          sm:h-80 sm:w-80
+        "
       />
 
       <Container className="relative">
@@ -39,7 +53,12 @@ export function Skills() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="
+            mt-10
+            grid gap-4
+            sm:mt-14 sm:grid-cols-2 sm:gap-5
+            lg:grid-cols-3
+          "
         >
           {skillCategories.map((category, index) => {
             const Icon = categoryIcons[index % categoryIcons.length];
@@ -48,20 +67,76 @@ export function Skills() {
               <motion.div
                 key={category.id}
                 variants={fadeUp}
-                whileHover={{
-                  y: -6,
-                  transition: { duration: 0.25 },
+                whileTap={{
+                  scale: 0.985,
                 }}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.18)] dark:hover:shadow-black/30 sm:p-7"
+                className="
+                  group relative overflow-hidden
+                  rounded-3xl
+                  border border-border
+                  bg-surface
+                  p-5
+                  shadow-[0_1px_2px_rgba(0,0,0,0.04)]
+                  transition-all duration-300 ease-out
+
+                  active:border-accent/30
+                  active:bg-accent/[0.02]
+                  active:shadow-[0_12px_30px_-20px_rgba(0,0,0,0.2)]
+
+                  sm:p-7
+
+                  md:hover:-translate-y-1.5
+                  md:hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.18)]
+                  dark:md:hover:shadow-black/30
+                "
               >
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                  className="
+                    pointer-events-none
+                    absolute
+                    -right-16
+                    -top-16
+                    h-40 w-40
+                    rounded-full
+                    bg-accent/10
+                    opacity-0
+                    blur-3xl
+                    transition-opacity duration-500
+
+                    group-active:opacity-100
+                    md:group-hover:opacity-100
+                  "
                 />
 
                 <div className="relative flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-bg text-accent transition-all duration-300 group-hover:border-accent/30 group-hover:bg-accent/10">
-                    <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                  <div
+                    className="
+                      flex
+                      h-10 w-10
+                      items-center justify-center
+                      rounded-2xl
+                      border border-border
+                      bg-bg
+                      text-accent
+                      transition-all duration-300
+
+                      group-active:border-accent/30
+                      group-active:bg-accent/10
+
+                      sm:h-11 sm:w-11
+                      md:group-hover:border-accent/30
+                      md:group-hover:bg-accent/10
+                    "
+                  >
+                    <Icon
+                      className="
+                        h-5 w-5
+                        transition-transform duration-300
+                        group-active:scale-105
+                        md:group-hover:scale-110
+                      "
+                    />
                   </div>
 
                   <span className="font-mono text-[10px] text-text-muted">
@@ -69,7 +144,7 @@ export function Skills() {
                   </span>
                 </div>
 
-                <div className="relative mt-6">
+                <div className="relative mt-5 sm:mt-6">
                   <h3 className="text-base font-semibold tracking-tight text-text">
                     {category.title}
                   </h3>
@@ -79,15 +154,32 @@ export function Skills() {
                   </p>
                 </div>
 
-                <div className="relative mt-7 space-y-4">
+                <div className="relative mt-6 space-y-4 sm:mt-7">
                   {category.items.map((item) => (
-                    <SkillBar key={item.name} item={item} />
+                    <SkillBar
+                      key={item.name}
+                      item={item}
+                    />
                   ))}
                 </div>
 
                 <div
                   aria-hidden
-                  className="absolute bottom-0 left-6 right-6 h-px origin-left scale-x-0 bg-accent/60 transition-transform duration-500 group-hover:scale-x-100"
+                  className="
+                    absolute
+                    bottom-0
+                    left-5 right-5
+                    h-px
+                    origin-left
+                    scale-x-0
+                    bg-accent/60
+                    transition-transform duration-500
+
+                    group-active:scale-x-100
+
+                    sm:left-6 sm:right-6
+                    md:group-hover:scale-x-100
+                  "
                 />
               </motion.div>
             );
@@ -95,13 +187,34 @@ export function Skills() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 12,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
           viewport={viewportOnce}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-10 flex max-w-xl items-center justify-center gap-2 text-center"
+          transition={{
+            duration: 0.6,
+            delay: 0.2,
+          }}
+          className="
+            mx-auto
+            mt-8
+            flex
+            max-w-xl
+            items-start
+            justify-center
+            gap-2
+            px-4
+            text-center
+            sm:mt-10
+            sm:items-center
+          "
         >
-          <Sparkles className="h-3.5 w-3.5 shrink-0 text-accent" />
+          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent sm:mt-0" />
 
           <p className="text-xs leading-5 text-text-muted">
             Tools change. The goal stays the same — building thoughtful,
